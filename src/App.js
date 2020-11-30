@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+// import Welcome from './components/Welcome';
+import Message from './components/Message';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//class components are ES6 classes- can also receive props as input and return html
+/*JSX- JavaScript XML (JSX) - extension to the JS language syntax
+    -allows you to write XML-like code for elements and components
+    -transpiles to pure JS understood by the browsers
+    -JSX translates into React.createElement(), which in turn uses the React library
+    -otherwise, you would need to use React.createElement() with what you are rendering
+*/
+
+class App extends Component {
+
+  render() {
+    return (
+      <div className="App">
+        <Message />
+      </div>
+    )
+  };
 }
 
 export default App;
