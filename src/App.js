@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 // import Welcome from './components/Welcome';
 import Message from './components/Message';
+import Counter from './components/Counter';
 
 //class components are ES6 classes- can also receive props as input and return html
 /*JSX- JavaScript XML (JSX) - extension to the JS language syntax
@@ -16,6 +17,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Counter />
         <Message />
       </div>
     )
