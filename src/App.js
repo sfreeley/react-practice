@@ -13,10 +13,12 @@ import Overview from './components/Overview';
     -otherwise, you would need to use React.createElement() with what you are rendering
 */
 
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      number: 0,
       //this is what will handle what is typed into the input field
       task: "",
       //empty array will hold the individual task that is typed into the input field and submitted
@@ -31,20 +33,23 @@ class App extends Component {
     })
   }
 
+
+
   submitTask = (e) => {
+
     //do not want the form to refresh when we submit it
     e.preventDefault();
     //changing state of the tasks array
-    this.setState({
+    this.setState((prevState) => ({
       //adding whatever was submitted in the form into our tasks array
       tasks: this.state.tasks.concat(this.state.task),
       //the input field should then be cleared so we can add another task
-      task: ""
-    })
+      task: "",
+    }))
   }
 
   render() {
-    const { task, tasks } = this.state;
+    const { task, tasks, number } = this.state;
     return (
       <div className="App">
         <Counter />
@@ -56,7 +61,7 @@ class App extends Component {
             <button type="submit" >Submit</button>
           </div>
         </form>
-        <Overview tasks={tasks} />
+        <Overview tasks={tasks} number={number} />
       </div>
 
 

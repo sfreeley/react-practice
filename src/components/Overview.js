@@ -1,12 +1,13 @@
 import React from 'react';
 
-const Overview = ({ tasks }) => {
+const Overview = ({ tasks, number }) => {
     return (
-        <ul>
+        <div>
+
             {tasks.map((task) => {
-                return <li>{task}</li>
+                return <div>{++number}: {task}</div>
             })}
-        </ul>
+        </div>
     )
 }
 
