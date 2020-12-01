@@ -8,7 +8,7 @@ class Message extends Component {
         super()
         this.state = {
             //initializing a property to set into state
-            message: 'Welcome, Visitor'
+            message: 'Welcome'
         }
     }
 
@@ -24,11 +24,15 @@ class Message extends Component {
     }
 
     render() {
+        //destructuring props in class component; you can extract the props you want to use
+        //can destructure state in similar way
+        const { name } = this.props;
+
         return (
             <div>
                 <h1>
                     {/* we have to bind the state value in this render function*/}
-                    {this.state.message}
+                    {this.state.message}, {name}
                 </h1>
                 <button onClick={() => this.changeMessage()}>
                     Subscribe

@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <div className="App">
         <Counter />
-        <Message />
+        <Message name="hello" />
       </div>
     )
   };
