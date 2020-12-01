@@ -11,6 +11,18 @@ import Message from './components/Message';
     -otherwise, you would need to use React.createElement() with what you are rendering
 */
 
+/*
+  Binding event handlers in React: 'this' keyword in JS -->
+  in event handlers, the value of this keyword is undefined and therefore we need to bind the event handler:
+  to bind you can:
+  performance issue: re-renders each time ==> 1. bind the event handler in the render method: ie this.clickHandler.bind(this)
+  performance issue: re-renders each time ==> 2. bind the event handler in the render method by calling it with an arrow function: ie onClick={() => this.clickHandler()}
+  binding only happens once in the class constructor ==> 3. bind the event handler in the constructor: this.clickHandler = this.clickHandler.bind(this) --> then you can just use this.clickHandler in the render method
+  4. bind the event handler using an arrow function as a class property: clickHandler = () => {your action... this.setState({.......})}
+
+  PREFERRED: 3 or 4; smaller apps performance may not be an issue with 1 or 2... 2 is better than the first option
+*/
+
 class App extends Component {
 
   render() {
