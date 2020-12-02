@@ -35,6 +35,8 @@ class App extends Component {
       //empty array will hold the individual task that is typed into the input field and submitted
       tasks: []
     }
+
+    // this.deleteTask = this.deleteTask.bind(this);
   }
 
   handleFieldChange = (e) => {
@@ -59,6 +61,14 @@ class App extends Component {
     }))
   }
 
+  deleteTask = (taskToDelete) => {
+    console.log("clicked delete")
+    this.setState({
+      tasks: this.state.tasks.filter(aTask => aTask !== taskToDelete),
+      task: ""
+    }, console.log(this.state.tasks))
+  }
+
   render() {
     const { task, tasks, number } = this.state;
     return (
@@ -69,10 +79,10 @@ class App extends Component {
           <label htmlFor="taskInput">Enter a Task</label>
           <input value={task} onChange={this.handleFieldChange} type="text" id="taskInput" />
           <div>
-            <button type="submit" >Submit</button>
+            <button type="submit">Submit</button>
           </div>
         </form>
-        <Overview tasks={tasks} number={number} />
+        <Overview deleteTask={this.deleteTask} tasks={tasks} number={number} />
       </div>
 
 
