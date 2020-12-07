@@ -4,6 +4,7 @@ import './App.css';
 import Message from './components/Message';
 import Counter from './components/Counter';
 import Overview from './components/Overview';
+import UserGreeting from './components/UserGretting';
 
 //class components are ES6 classes- can also receive props as input and return html
 /*JSX- JavaScript XML (JSX) - extension to the JS language syntax
@@ -73,6 +74,7 @@ class App extends Component {
     const { task, tasks, number } = this.state;
     return (
       <div className="App">
+        <UserGreeting />
         <Counter />
         <Message name="hello" />
         <form onSubmit={this.submitTask}>
