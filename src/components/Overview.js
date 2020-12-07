@@ -1,11 +1,14 @@
 import React from 'react';
 
-const Overview = ({ tasks, number }) => {
+const Overview = ({ deleteTask, tasks, number }) => {
     return (
         <div>
+            {tasks.map((oneTask) => {
+                return <div key={oneTask.id}>
+                    {++number}: {oneTask}
+                    <button onClick={() => deleteTask(oneTask)}>Delete</button>
 
-            {tasks.map((task) => {
-                return <div>{++number}: {task}</div>
+                </div>
             })}
         </div>
     )

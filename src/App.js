@@ -4,6 +4,7 @@ import './App.css';
 import Message from './components/Message';
 import Counter from './components/Counter';
 import Overview from './components/Overview';
+import UserGreeting from './components/UserGretting';
 
 //class components are ES6 classes- can also receive props as input and return html
 /*JSX- JavaScript XML (JSX) - extension to the JS language syntax
@@ -13,6 +14,17 @@ import Overview from './components/Overview';
     -otherwise, you would need to use React.createElement() with what you are rendering
 */
 
+/*
+  Binding event handlers in React: 'this' keyword in JS -->
+  in event handlers, the value of this keyword is undefined and therefore we need to bind the event handler:
+  to bind you can:
+  performance issue: re-renders each time ==> 1. bind the event handler in the render method: ie this.clickHandler.bind(this)
+  performance issue: re-renders each time ==> 2. bind the event handler in the render method by calling it with an arrow function: ie onClick={() => this.clickHandler()}
+  binding only happens once in the class constructor ==> 3. bind the event handler in the constructor: this.clickHandler = this.clickHandler.bind(this) --> then you can just use this.clickHandler in the render method
+  4. bind the event handler using an arrow function as a class property: clickHandler = () => {your action... this.setState({.......})}
+
+  PREFERRED: 3 or 4; smaller apps performance may not be an issue with 1 or 2... 2 is better than the first option
+*/
 
 class App extends Component {
   constructor() {
@@ -24,6 +36,8 @@ class App extends Component {
       //empty array will hold the individual task that is typed into the input field and submitted
       tasks: []
     }
+
+    // this.deleteTask = this.deleteTask.bind(this);
   }
 
   handleFieldChange = (e) => {
@@ -48,20 +62,29 @@ class App extends Component {
     }))
   }
 
+  deleteTask = (taskToDelete) => {
+    console.log("clicked delete")
+    this.setState({
+      tasks: this.state.tasks.filter(aTask => aTask !== taskToDelete),
+      task: ""
+    }, console.log(this.state.tasks))
+  }
+
   render() {
     const { task, tasks, number } = this.state;
     return (
       <div className="App">
+        <UserGreeting />
         <Counter />
         <Message name="hello" />
         <form onSubmit={this.submitTask}>
           <label htmlFor="taskInput">Enter a Task</label>
           <input value={task} onChange={this.handleFieldChange} type="text" id="taskInput" />
           <div>
-            <button type="submit" >Submit</button>
+            <button type="submit">Submit</button>
           </div>
         </form>
-        <Overview tasks={tasks} number={number} />
+        <Overview deleteTask={this.deleteTask} tasks={tasks} number={number} />
       </div>
 
 
