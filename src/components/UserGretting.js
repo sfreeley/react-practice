@@ -5,15 +5,20 @@ class UserGretting extends Component {
         super(props)
 
         this.state = {
-            isLoggedIn: false
+            isLoggedIn: true
         }
     }
 
     render() {
-        //3rd approach ternary conditional
+        //short circuit operator --> will rendering something only if it is true, otherwise, it will return nothing
         return (
-            this.state.isLoggedIn ? <div>Welcome ssss</div> : <div>Welcome Guest</div>
+            this.state.isLoggedIn && <div>Welcome wwwwww</div>
         )
+
+        //3rd approach ternary operator
+        // return (
+        //     this.state.isLoggedIn ? <div>Welcome ssss</div> : <div>Welcome Guest</div>
+        // )
 
         //2nd approach
         //variable storing the element being rendered
